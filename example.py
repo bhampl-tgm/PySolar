@@ -25,19 +25,19 @@ import sys
 # tutorial will be a subclass of DirectObject
 
 
-class World(DirectObject):
+class Example(DirectObject):
     # Macro-like function used to reduce the amount to code needed to create the
     # on screen instructions
 
     def genLabelText(self, text, i):
         return OnscreenText(text=text, pos=(0.06, -.06 * (i + 0.5)), fg=(1, 1, 1, 1),
-                            parent=base.a2dTopLeft,align=TextNode.ALeft, scale=.05)
+                            parent=base.a2dTopLeft, align=TextNode.ALeft, scale=.05)
 
     def __init__(self):
 
         # The standard camera position and background initialization
         base.setBackgroundColor(0, 0, 0)
-        base.disableMouse()
+        # base.disableMouse()
         camera.setPos(0, 0, 45)
         camera.setHpr(0, -90, 0)
 
@@ -245,7 +245,6 @@ class World(DirectObject):
             self.orbit_root_earth.attachNewNode('orbit_root_moon'))
 
         self.sky = loader.loadModel("models/solar_sky_sphere")
-
         self.sky_tex = loader.loadTexture("models/stars_1k_tex.jpg")
         self.sky.setTexture(self.sky_tex, 1)
         self.sky.reparentTo(render)
@@ -344,5 +343,5 @@ class World(DirectObject):
 
 # end class world
 
-w = World()
+p = Example()
 base.run()
