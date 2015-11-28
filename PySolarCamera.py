@@ -19,8 +19,8 @@ class PySolarCamera:
 
     def setup(self):
         self.base.setBackgroundColor(0, 0, 0)
-        self.base.camera.setPos(100, 100, 45)
-        self.base.camera.setHpr(0, -90, 0)
+        self.base.camera.setPos(0, 0, 0)
+        self.base.camera.setHpr(0, 0, 0)
         self.base.disableMouse()
         props = WindowProperties()
         props.setCursorHidden(True)
@@ -30,8 +30,7 @@ class PySolarCamera:
         # Start the camera control task:
         self.base.taskMgr.add(self.control_camera, "camera-task")
 
-
-# self.pysolar.accept("mouse3", self.set_key_btn, [2, 1])
+        # self.pysolar.accept("mouse3", self.set_key_btn, [2, 1])
         # self.pysolar.accept("mouse3-up", self.set_key_btn, [2, 0])
         # self.pysolar.accept("enter", self.toggleShader)
         # self.pysolar.accept("j", self.rotateLight, [-1])

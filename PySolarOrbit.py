@@ -1,3 +1,5 @@
+from panda3d.core import PointLight, VBase4, AmbientLight
+
 from PySolarPlanet import PySolarPlanet
 
 
@@ -10,6 +12,9 @@ class PySolarOrbit:
 
     def __init__(self, base):
         self.base = base
+        self.light_on = False
+        self.plnp = None
+        self.alnp = None
         self.sky = PySolarPlanet(base=self.base, model=self.MODELS_PREFIX + 'solar_sky_sphere',
                                  texture=self.MODELS_PREFIX + 'stars_1k_tex.jpg', orbit=self.base.render, scale=1000)
         self.sun = PySolarPlanet(base=self.base, model=self.MODELS_PREFIX + 'planet_sphere',
@@ -42,12 +47,26 @@ class PySolarOrbit:
                                   day_period=(0.0749 * self.YEARSCALE))
 
         self.reset_loop()
+        self.setup_light()
 
     def get_sky_model(self):
         return self.sky.get_model()
 
     def toggle_texture(self):
-        pass
+        self.sun.toggle_texture()
+        self.mercury.toggle_texture()
+        self.venus.toggle_texture()
+        self.mars.toggle_texture()
+        self.earth.toggle_texture()
+        self.moon.toggle_texture()
+
+    def timescale(self, scale):
+        self.sun.timescale(scale)
+        self.mercury.timescale(scale)
+        self.venus.timescale(scale)
+        self.mars.timescale(scale)
+        self.earth.timescale(scale)
+        self.moon.timescale(scale)
 
     def toggle_interval(self):
         self.sun.toggle_loop()
@@ -65,3 +84,26 @@ class PySolarOrbit:
         self.earth.loop()
         self.moon.loop()
 
+    def setup_light(self):
+        # light
+        plight = PointLight('plight')
+        plight.setColor(VBase4(1, 1, 1, 1))
+        self.plnp = self.base.render.attachNewNode(plight)
+        self.plnp.setPos(0, 0, 0)
+
+        alight = AmbientLight('alight')
+        alight.setColor(VBase4(.1, .1, .1, 1))
+        # self.alnp = self.base.render.attachNewNode(alight)
+        self.alnp = self.sun.get_model().attachNewNode(alight)
+        self.sun.get_model().setLightOff()
+
+        self.toggle_light()
+
+    def toggle_light(self):
+        if not self.light_on:
+            self.base.render.setLight(self.plnp)
+            self.base.render.setLight(self.alnp)
+        else:
+            self.base.render.setLightOff(self.plnp)
+            self.base.render.setLightOff(self.alnp)
+        self.light_on = not self.light_on

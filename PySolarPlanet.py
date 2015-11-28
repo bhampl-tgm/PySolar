@@ -24,6 +24,8 @@ class PySolarPlanet:
         if day_period is not None:
             self.day_period = self.model.hprInterval(day_period, (360, 0, 0))
 
+        self.textureOn = True
+
     def attache_now_node(self, newnode):
         return self.orbit.attachNewNode(newnode)
 
@@ -33,8 +35,20 @@ class PySolarPlanet:
     def get_model(self):
         return self.model
 
+    def timescale(self, scale):
+        if hasattr(self, 'orbit_period') and self.orbit_period is not None:
+            print("self.orbit_period.getPlayRate(): " + str(self.orbit_period.getPlayRate()))
+            self.orbit_period.setPlayRate(self.orbit_period.getPlayRate() + scale)
+        if hasattr(self, 'day_period') and self.day_period is not None:
+            print("self.day_period.getPlayRate(): " + str(self.day_period.getPlayRate()))
+            self.day_period.setPlayRate(self.day_period.getPlayRate() + scale)
+
     def toggle_texture(self):
-        pass
+        if self.textureOn:
+            self.model.clear_texture()
+        else:
+            self.model.setTexture(self.tex)
+        self.textureOn = not self.textureOn
 
     def loop(self):
         if hasattr(self, 'orbit_period') and self.orbit_period is not None:
