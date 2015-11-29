@@ -22,8 +22,8 @@ class PySolar(DirectObject):
         # Initialize the ShowBase class from which we inherit, which will
         # create a window and set up everything we need for rendering into it.
         DirectObject.__init__(self)
-        # black background
 
+        # init objects
         self.planets = PySolarOrbit(base)
         self.camera = PySolarCamera(base, self, self.planets.get_sky_model())
         self.camera.setup()
@@ -39,6 +39,7 @@ class PySolar(DirectObject):
         gen_label_text("[ESCAPE]: exit", 7)
 
 
+# main method
 if __name__ == '__main__':
     p = PySolar()
     base.run()

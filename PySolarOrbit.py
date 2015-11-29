@@ -93,7 +93,6 @@ class PySolarOrbit:
 
         alight = AmbientLight('alight')
         alight.setColor(VBase4(.1, .1, .1, 1))
-        # self.alnp = self.base.render.attachNewNode(alight)
         self.alnp = self.sun.get_model().attachNewNode(alight)
         self.sun.get_model().setLightOff()
 

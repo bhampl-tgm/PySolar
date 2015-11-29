@@ -30,15 +30,6 @@ class PySolarCamera:
         # Start the camera control task:
         self.base.taskMgr.add(self.control_camera, "camera-task")
 
-        # self.pysolar.accept("mouse3", self.set_key_btn, [2, 1])
-        # self.pysolar.accept("mouse3-up", self.set_key_btn, [2, 0])
-        # self.pysolar.accept("enter", self.toggleShader)
-        # self.pysolar.accept("j", self.rotateLight, [-1])
-        # self.pysolar.accept("k", self.rotateLight, [1])
-
-        # self.sky.setShaderAuto()
-        # self.base.shaderenable = 1
-
     def control_camera(self, task):
         # figure out how much the mouse has moved (in pixels)
         md = self.base.win.getPointer(0)
@@ -61,18 +52,6 @@ class PySolarCamera:
         if self.keybtn[1]:
             self.focus -= rows * elapsed * 30
         self.base.camera.setPos(self.focus - (rows * 5))
-        # if self.base.camera.getX() < -59.0:
-        #     self.base.camera.setX(-59)
-        # if self.base.camera.getX() > 59.0:
-        #     self.base.camera.setX(59)
-        # if self.base.camera.getY() < -59.0:
-        #     self.base.camera.setY(-59)
-        # if self.base.camera.getY() > 59.0:
-        #     self.base.camera.setY(59)
-        # if self.base.camera.getZ() < 5.0:
-        #     self.base.camera.setZ(5)
-        # if self.base.camera.getZ() > 45.0:
-        #     self.base.camera.setZ(45)
         if self.keybtn[2]:
             self.base.camera.setX(self.base.camera, -elapsed * 10)
         if self.keybtn[3]:
@@ -81,7 +60,6 @@ class PySolarCamera:
             self.base.camera.setZ(self.base.camera, elapsed * 10)
         if self.keybtn[5]:
             self.base.camera.setZ(self.base.camera, -elapsed * 10)
-
         self.focus = self.base.camera.getPos() + (rows * 5)
         self.last = task.time
         return Task.cont
