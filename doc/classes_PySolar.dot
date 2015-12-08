@@ -4,16 +4,11 @@ rankdir=BT
 "0" [label="{PySolar.PySolar|camera\levents\lplanets\l|__init__()\l}", shape="record"];
 "1" [label="{PySolarCamera.PySolarCamera|base\lfocus\lheading : int\lkeybtn : list\llast : int\lmousex : int\lmousey : int\lpitch : int\lpysolar\lsky\l|__init__()\lcontrol_camera()\lrotate_cam()\lset_key_btn()\lsetup()\l}", shape="record"];
 "2" [label="{PySolarEvents.PySolarEvents|camera\lorbit\lpysolar\l|__init__()\l}", shape="record"];
-"3" [label="{PySolarOrbit.PySolarOrbit|DAYSCALE : float\lMODELS_PREFIX : str\lORBITSCALE : int\lSIZESCALE : float\lYEARSCALE : int\lalnp : NoneType\lbase\learth\llight_on : bool\lmars\lmercury\lmoon\lplnp : NoneType\lsky\lsun\lvenus\l|__init__()\lget_sky_model()\lreset_loop()\lsetup_light()\ltimescale()\ltoggle_interval()\ltoggle_light()\ltoggle_texture()\l}", shape="record"];
+"3" [label="{PySolarOrbit.PySolarOrbit|alnp : NoneType\lbase\llight_on : bool\lplanets : dict\lplnp : NoneType\lsky : NoneType\l|__init__()\lget_sky_model()\lreset_loop()\lsetup_light()\ltimescale()\ltoggle_interval()\ltoggle_light()\ltoggle_texture()\l}", shape="record"];
 "4" [label="{PySolarPlanet.PySolarPlanet|day_period\lmodel\lorbit : NoneType\lorbit_period\ltex\ltextureOn : bool\l|__init__()\lattache_now_node()\lget_model()\lloop()\lorbit_set_pos()\ltimescale()\ltoggle_loop()\ltoggle_texture()\l}", shape="record"];
+"5" [label="{PySolarPlanetFactory.PySolarPlanetFactory|DAYSCALE : float\lMODELS_PREFIX : str\lORBITSCALE : int\lSIZESCALE : float\lYEARSCALE : int\lbase\l|__init__()\lcreate()\l}", shape="record"];
 "1" -> "0" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="camera", style="solid"];
 "2" -> "0" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="events", style="solid"];
 "3" -> "0" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="planets", style="solid"];
-"4" -> "3" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="mercury", style="solid"];
-"4" -> "3" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="earth", style="solid"];
-"4" -> "3" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="mars", style="solid"];
-"4" -> "3" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="venus", style="solid"];
 "4" -> "3" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="sky", style="solid"];
-"4" -> "3" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="moon", style="solid"];
-"4" -> "3" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="sun", style="solid"];
 }

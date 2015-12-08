@@ -1,18 +1,15 @@
 class PySolarPlanet:
     def __init__(self, base=None, model=None, texture=None, orbit=None, pos=None, scale=None, orbit_period=None,
                  day_period=None):
+        self.model = base.loader.loadModel(model)
+        self.tex = base.loader.loadTexture(texture)
+        self.model.setTexture(self.tex, 1)
         if isinstance(orbit, str):
             self.orbit = base.render.attachNewNode(orbit)
-            self.model = base.loader.loadModel(model)
-            self.tex = base.loader.loadTexture(texture)
-            self.model.setTexture(self.tex, 1)
             self.model.reparentTo(self.orbit)
             self.model.setPos(pos, 0, 0)
         else:
             self.orbit = orbit
-            self.model = base.loader.loadModel(model)
-            self.tex = base.loader.loadTexture(texture)
-            self.model.setTexture(self.tex, 1)
             self.model.reparentTo(orbit)
             if pos is not None:
                 self.model.setPos(pos, 0, 0)
@@ -37,10 +34,8 @@ class PySolarPlanet:
 
     def timescale(self, scale):
         if hasattr(self, 'orbit_period') and self.orbit_period is not None:
-            print("self.orbit_period.getPlayRate(): " + str(self.orbit_period.getPlayRate()))
             self.orbit_period.setPlayRate(self.orbit_period.getPlayRate() + scale)
         if hasattr(self, 'day_period') and self.day_period is not None:
-            print("self.day_period.getPlayRate(): " + str(self.day_period.getPlayRate()))
             self.day_period.setPlayRate(self.day_period.getPlayRate() + scale)
 
     def toggle_texture(self):
